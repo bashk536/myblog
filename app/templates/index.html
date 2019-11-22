@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+<html>
+<head>
+  
+</head>
+
+<body>
+<!-- All we need in this page is the block 'content' as we'll be basically pasting this in base.html
+     file we inherited -->
+    {% block content %} <!-- 'content' is the unique name-->
+    <h4>Hello, {{user.username}}</h4>
+    {%for post in posts%}
+    <div> <p>{{post.author.username}} says: <b>{{post.body}}</b></p> </div>
+
+    {% endfor %}
+    {% endblock %}
+</body>
+
+</html>

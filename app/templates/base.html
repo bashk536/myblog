@@ -1,0 +1,19 @@
+<html>
+<head>
+    {% if title %}
+    <title>{{ title }} -Blog</title>
+    {% else %}
+    <title>My Site</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>Microblog: <a href = "/index">Home</a></div>
+    <hr>
+
+    {% block content %}{% endblock %} <!-- This is where we're embeding the unique 'content' block
+                                            from index.html file-->
+   
+</body>
+
+</html>

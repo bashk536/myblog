@@ -1,0 +1,32 @@
+name = input("What is your name?")
+print("Hi", name)
+
+#comment
+'''multi-line
+	comment
+		'''
+- All data in python is an object
+
+str1 = "Escape Sequences \' \" \t \\ \n"
+
+-----Type casting----
+  print("Cast", type(int(5.4)))
+       ("Cast", type(str(5.4)))
+	("Cast", type(chr(97))) #this would be 'A'
+	("Cast", type(ord('a'))) #back to 97
+
+- Password Encyrption: Anybody can see what it is but can't change value
+*What is JSON web tokens?
+
+-Resetpasswordform is 'data'
+
+
+
+
+
+
+
+#########check lightsail on Amazon#########
+
+---Tutorial Followers---
+- union returns query
