@@ -6,12 +6,18 @@
         {{ form.hidden_tag() }} <!--  generates a hidden field that includes a token that is used to 
                                         protect the form against CSRF attacks-->
         <p>
-            {{ form.username.label }}       <!-- Label -->
-            {{ form.username(size = 32) }}
+            {{ form.username.label }} <br>       <!-- Label -->
+            {{ form.username(size = 32) }}<br>
+            {% for error in form.username.errors%}
+            <span style = 'color:red;'>[{{ error }}]</span>>
+            {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}
-            {{ form.password(size = 32) }}  <!-- Actual field, additional HTML attrbutes as arguments-->
+            {{ form.password.label }} <br>
+            {{ form.password(size = 32) }} <br> <!-- Actual field, additional HTML attrbutes as arguments-->
+            {% for error in form.password.errors %}
+            <span style = 'color: red;'>[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p> {{ form.rememberMe() }} {{ form.rememberMe.label }} </p>
         <p> {{ form.submit() }}</p>
