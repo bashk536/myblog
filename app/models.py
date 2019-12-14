@@ -1,5 +1,6 @@
 from app import db, login
 from datetime import datetime
+from hashlib import md5
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -12,6 +13,8 @@ class User(UserMixin, db.Model):
     email          =db.Column(db.String(120), index = True, unique = True)
     password_hash  =db.Column(db.String(128))
     posts          =db.relationship('Post', backref = 'author', lazy = 'dynamic')
+    about_me       = db.Column(db.String(140))
+    last_seen      = db.Column(db.DateTime, default=datetime.utcnow)
     # relationship() is a high-level view of the relationship between users and posts
     #The backref argument defines the name of a field that will be added to the objects of the "many" 
     # class that points back at the "one" object.
@@ -26,6 +29,11 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
 @login.user_loader
 def load_user(id):
