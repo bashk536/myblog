@@ -4,8 +4,29 @@
      file we inherited -->
     {% block content %} <!-- 'content' is the unique name-->
         <h4>Hello, {{ current_user.username}}</h4>
-        {%for post in posts%}
-        <div> <p>{{post.author.username}} says: <b>{{post.body}}</b></p> </div>
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
+            {% for error in form.post.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
 
-        {% endfor %}
-    {% endblock %}
+    {%for post in posts%}
+        {% include '_post.html' %}
+
+    {% endfor %}
+
+    {% if prev_url %}
+        <a href="{{ prev_url }}">Newer posts</a>
+    {% endif %}
+    {% if next_url %}
+        <a href="{{ next_url }}">Older posts</a>
+    {% endif %}
+{% endblock %}
